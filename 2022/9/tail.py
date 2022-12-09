@@ -6,20 +6,20 @@ def parse_input(str):
     inst = str.split(' ')
     return (inst[0], int(inst[1]))
 
-def move(dir):
+def move(head, dir):
     if dir == 'U':
-        return [0, 1]
+        return [head[0], head[1]+1]
     elif dir == 'D':
-        return [0, -1]
+        return [head[0], head[1]-1]
     elif dir == 'R':
-        return [1, 0]
+        return [head[0]+1, head[1]]
     elif dir == 'L':
-        return [-1, 0]
+        return [head[0]-1, head[1]]
 
 def is_adjacent(head,tail):
     return abs(head[0] - tail[0]) <= 1 and abs(head[1] - tail[1]) <= 1
 
-def move_closer(tail, head):
+def move_adjacent(tail, head):
     dx = head[0] - tail[0]
     dy = head[1] - tail[1]
     if abs(dx) > abs(dy):
@@ -41,13 +41,12 @@ visited2 = dict()
 inputs = map(parse_input,rows)
 for input in inputs:
     for s in range(input[1]):
-        rope[0][0] += move(input[0])[0]
-        rope[0][1] += move(input[0])[1]
+        rope[0] = move(rope[0],input[0])
         for r in range(len(rope)-1):
             if not is_adjacent(rope[r],rope[r+1]):
-                rope[r+1] = move_closer(rope[r+1],rope[r])
-        visited[str(rope[1][0]),str(rope[1][1])] = True
-        visited2[str(rope[-1][0]),str(rope[-1][1])] = True
+                rope[r+1] = move_adjacent(rope[r+1],rope[r])
+        visited[tuple(rope[1])] = True   # store immediate tail
+        visited2[tuple(rope[-1])] = True # store 10th tail
 
 print(len(visited))
 print(len(visited2))
