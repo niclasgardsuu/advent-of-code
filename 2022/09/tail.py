@@ -48,22 +48,3 @@ for input in inputs:
 
 print(len(visited))
 print(len(visited2))
-
-
-n = "yahojarmo"
-m = "aadyahcinbyahojarmo2sc"
-
-fp = hash(n)
-m_fp = [hash(m[i:i+9] for i in range(len(m)-len(n)))]
-
-n = [3,1,4,1,5,1,2,6,5,9,8,4,9,7,9,2]
-m = [2,6]
-def f(str):
-    return str[0]*10 % 11 + str[1] % 11
-fm = f(m)
-for i in range(len(n)-len(m)+1):
-    fn = f(n[i:i+2])
-    if(fm == fn):
-        print(fm)
-        print(n[i:i+2])
-        print("cock")
