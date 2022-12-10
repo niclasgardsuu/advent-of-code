@@ -8,7 +8,7 @@ def draw(drawing, x, cycle):
     else:
         new_drawing = drawing + '.'
 
-    if (cycle)%40 == 0:
+    if cycle%40 == 0:
         new_drawing = new_drawing + '\n'
 
     return new_drawing
@@ -18,20 +18,16 @@ x = 1
 cycle = 0
 drawing = ''
 for i, row in enumerate(rows):
+    cycle += 1
+    drawing = draw(drawing,x,cycle)
+    if (cycle - 20) % 40 == 0:
+        total += x*(cycle)
     if row.startswith('addx'):
-        is_end = ''
-        if (cycle+1 - 20) % 40 == 0:
-            total += x*(cycle+1)
-        elif (cycle+2 - 20) % 40 == 0:
-            total += x*(cycle+2)
-        drawing = draw(drawing,x,cycle+1)
-        drawing = draw(drawing,x,cycle+2)
-        x += int(row.split()[1])
-        cycle += 2
-    else:
-        if (cycle+1 - 20) % 40 == 0:
-            total += x*(cycle+1)
-        drawing = draw(drawing,x,cycle+1)
         cycle += 1
+        if (cycle - 20) % 40 == 0:
+            total += x*(cycle)
+        drawing = draw(drawing,x,cycle)
+        x += int(row.split()[1])
+
 print(total)
 print(drawing)
