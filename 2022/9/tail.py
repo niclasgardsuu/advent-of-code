@@ -33,11 +33,9 @@ def move_adjacent(tail, head):
         y = tail[1] + (1 if dy > 0 else -1)
     return [x,y]
 
-rope = []
-for i in range(10):
-    rope.append([0,0])
-visited = dict()
-visited2 = dict()
+rope = [[0,0] for _ in range(10)]
+visited = set()
+visited2 = set()
 inputs = map(parse_input,rows)
 for input in inputs:
     for s in range(input[1]):
@@ -45,8 +43,27 @@ for input in inputs:
         for r in range(len(rope)-1):
             if not is_adjacent(rope[r],rope[r+1]):
                 rope[r+1] = move_adjacent(rope[r+1],rope[r])
-        visited[tuple(rope[1])] = True   # store immediate tail
-        visited2[tuple(rope[-1])] = True # store 10th tail
+        visited.add(tuple(rope[1]))   # store immediate tail
+        visited2.add(tuple(rope[-1])) # store 10th tail
 
 print(len(visited))
 print(len(visited2))
+
+
+n = "yahojarmo"
+m = "aadyahcinbyahojarmo2sc"
+
+fp = hash(n)
+m_fp = [hash(m[i:i+9] for i in range(len(m)-len(n)))]
+
+n = [3,1,4,1,5,1,2,6,5,9,8,4,9,7,9,2]
+m = [2,6]
+def f(str):
+    return str[0]*10 % 11 + str[1] % 11
+fm = f(m)
+for i in range(len(n)-len(m)+1):
+    fn = f(n[i:i+2])
+    if(fm == fn):
+        print(fm)
+        print(n[i:i+2])
+        print("cock")
