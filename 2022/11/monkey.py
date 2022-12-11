@@ -75,34 +75,34 @@ def p(monkeys):
 
 monkeys = []
 business = []
-gcd = 1
+lcm = 1
 for row in rows:
     monkeys.append(Monkey(row))
     business.append(0)
-    gcd *= monkeys[-1].get_test()
+    lcm *= monkeys[-1].get_test()
 for i in range(20):
     for m in monkeys:
         while m.update_wl(div = True):
             m.throw(monkeys)
     for m in monkeys:
-        m.reset_wl(gcd)
+        m.reset_wl(lcm)
 bs = list(map(lambda m: m.get_business(), monkeys))
 bs.sort(reverse = True)
 print(bs[:2])
 
 monkeys = []
 business = []
-gcd = 1
+lcm = 1
 for row in rows:
     monkeys.append(Monkey(row))
     business.append(0)
-    gcd *= monkeys[-1].get_test()
+    lcm *= monkeys[-1].get_test()
 for i in range(10000):
     for m in monkeys:
         while m.update_wl():
             m.throw(monkeys)
     for m in monkeys:
-        m.reset_wl(gcd)
+        m.reset_wl(lcm)
 bs = list(map(lambda m: m.get_business(), monkeys))
 bs.sort(reverse = True)
 print(bs[:2])
