@@ -63,9 +63,9 @@ class Monkey:
             return True
         return False
 
-    def reset_wl(self,scd):
+    def reset_wl(self,lcm):
         for i in range(len(self.items)):
-            self.items[i] = self.items[i] % scd
+            self.items[i] = self.items[i] % lcm
 
 
 def p(monkeys):
