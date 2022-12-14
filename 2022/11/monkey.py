@@ -2,7 +2,6 @@ with open("input.txt",'r') as f:
     data = f.read()
 rows = data.split('\n\n')
 
-
 class Monkey:
     def __init__(self, string) -> None:
         string = string.split('\n')[1:]
@@ -54,11 +53,11 @@ class Monkey:
                 inc = self.items[-1]
 
             if self.operation == '+':
-                self.items[-1] = self.items[-1] + inc
+                self.items[-1] += inc
             elif self.operation == '*':
-                self.items[-1] = self.items[-1] * inc
+                self.items[-1] *= inc
             if div:
-                self.items[-1] = int(self.items[-1] / 3)
+                self.items[-1] = self.items[-1] // 3
             self.business += 1
             return True
         return False
@@ -66,7 +65,6 @@ class Monkey:
     def reset_wl(self,lcm):
         for i in range(len(self.items)):
             self.items[i] = self.items[i] % lcm
-
 
 def p(monkeys):
     for m in monkeys:
@@ -88,7 +86,7 @@ for i in range(20):
         m.reset_wl(lcm)
 bs = list(map(lambda m: m.get_business(), monkeys))
 bs.sort(reverse = True)
-print(bs[:2])
+print(bs[0], " * ", bs[1], " = ", bs[0]*bs[1])
 
 monkeys = []
 business = []
@@ -105,4 +103,4 @@ for i in range(10000):
         m.reset_wl(lcm)
 bs = list(map(lambda m: m.get_business(), monkeys))
 bs.sort(reverse = True)
-print(bs[:2])
+print(bs[0], "*", bs[1], "=", bs[0]*bs[1])

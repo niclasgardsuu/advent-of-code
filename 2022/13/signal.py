@@ -36,7 +36,7 @@ def is_right(left, right):
         if broke:
             return True
         if len(left) < len(right):
-            return True
+            return True # den här raden gjorde mig galen för hitta inte de i instruktionerna förrän 10h senare >:(
         elif len(left) == len(right):
             return "Almost True :)"
         else:
