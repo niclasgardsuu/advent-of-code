@@ -34,8 +34,7 @@ def move_adjacent(tail, head):
     return [x,y]
 
 rope = [[0,0] for _ in range(10)]
-visited = set()
-visited2 = set()
+visits = [set(),set()]
 inputs = map(parse_input,rows)
 for input in inputs:
     for s in range(input[1]):
@@ -43,8 +42,8 @@ for input in inputs:
         for r in range(len(rope)-1):
             if not is_adjacent(rope[r],rope[r+1]):
                 rope[r+1] = move_adjacent(rope[r+1],rope[r])
-        visited.add(tuple(rope[1]))   # store immediate tail
-        visited2.add(tuple(rope[-1])) # store 10th tail
+        visits[0].add(tuple(rope[1]))   # store immediate tail
+        visits[1].add(tuple(rope[-1])) # store 10th tail
 
-print(len(visited))
-print(len(visited2))
+print(len(visits[0]))
+print(len(visits[1]))
