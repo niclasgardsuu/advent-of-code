@@ -39,31 +39,31 @@ for row in _map:
         s = s + c
     print(s)
 
+count1 = 0
 count = 0
 in_abyss = False
-while not in_abyss:
-    sand = [300,0]
-    falling = True
-    while falling:
-        if sand[0] <= 0 or sand[0] >= 599 or sand[1] >= 198:
-            print("ree finns inte nån abyss")
-            in_abyss = True
-            break
-        if _map[0][300] == 'o':
-            in_abyss = True
-            break
-        if _map[sand[1]+1][sand[0]] == '.':
-            sand[1] += 1
-        elif _map[sand[1]+1][sand[0]-1] == '.':
-            sand[0] -= 1
-            sand[1] += 1
-        elif _map[sand[1]+1][sand[0]+1] == '.':
-            sand[0] += 1
-            sand[1] += 1
-        else:
-            count += 1
-            falling = False
-            _map[sand[1]][sand[0]] = 'o'
+for part in [1,2]:
+    while not in_abyss:
+        sand = [300,0]
+        falling = True
+        while falling:
+            if part == 1 and sand[1] > largest_y-2 and count1 == 0:
+                count1 = count
+            if _map[0][300] == 'o':
+                in_abyss = True
+                break
+            if _map[sand[1]+1][sand[0]] == '.':
+                sand[1] += 1
+            elif _map[sand[1]+1][sand[0]-1] == '.':
+                sand[0] -= 1
+                sand[1] += 1
+            elif _map[sand[1]+1][sand[0]+1] == '.':
+                sand[0] += 1
+                sand[1] += 1
+            else:
+                count += 1
+                falling = False
+                _map[sand[1]][sand[0]] = 'o'
 print("------")
 
 for row in _map:
@@ -72,4 +72,5 @@ for row in _map:
         s = s + c
     print(s)
 
+print(count1)
 print(count)
