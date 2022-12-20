@@ -1,4 +1,4 @@
-with open('input.txt') as f:
+with open('test.txt') as f:
     data = f.read()
 ns = list(map(int,data.split('\n')))
 
@@ -46,16 +46,11 @@ for i in range(len(numbers)):
     f = find_index(numbers, i)
     t = (f + numbers[f][1]) % (len(numbers) - 1)
     if f < t:
-        if numbers[f][1] < 0:
-            t += 1
-        else:
-            t += 1
+        t += 1
     else:
         if t == 0:
-            t = len(numbers)
-        else:
-            if numbers[f][1] > 0:
-                f += 1
+            t = len(numbers)    
+        f += 1
     arr = overlap(range(*tuple(sorted([f, t]))),rev = t < f)
     for fr, to in arr:
         # print(numbers)
@@ -64,27 +59,27 @@ for i in range(len(numbers)):
         numbers[to] = tmp
     # p(numbers)
 
-numbers2 = index_ints_part2(ns)
-for _ in range(10):
-    for i in range(len(numbers2)):
-        f = find_index(numbers2, i)
-        t = (f + numbers2[f][1]) % (len(numbers2) - 1)
-        if f < t:
-            if numbers2[f][1] < 0:
-                t += 1
-            else:
-                t += 1
-        else:
-            if t == 0:
-                t = len(numbers2)
-            else:
-                if numbers2[f][1] > 0:
-                    f += 1
-        arr = overlap(range(*tuple(sorted([f, t]))),rev = t < f)
-        for fr, to in arr:
-            tmp = numbers2[fr]
-            numbers2[fr] = numbers2[to]
-            numbers2[to] = tmp
+# numbers2 = index_ints_part2(ns)
+# for _ in range(10):
+#     for i in range(len(numbers2)):
+#         f = find_index(numbers2, i)
+#         t = (f + numbers2[f][1]) % (len(numbers2) - 1)
+#         if f < t:
+#             if numbers2[f][1] < 0:
+#                 t += 1
+#             else:
+#                 t += 1
+#         else:
+#             if t == 0:
+#                 t = len(numbers2)
+#             else:
+#                 if numbers2[f][1] > 0:
+#                     f += 1
+#         arr = overlap(range(*tuple(sorted([f, t]))),rev = t < f)
+#         for fr, to in arr:
+#             tmp = numbers2[fr]
+#             numbers2[fr] = numbers2[to]
+#             numbers2[to] = tmp
     
 
 
