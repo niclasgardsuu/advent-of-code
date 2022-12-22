@@ -50,7 +50,8 @@ for i in range(len(numbers)):
     else:
         if t == 0:
             t = len(numbers)    
-        f += 1
+        else:
+            f += 1
     arr = overlap(range(*tuple(sorted([f, t]))),rev = t < f)
     for fr, to in arr:
         # print(numbers)

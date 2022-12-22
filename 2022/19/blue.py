@@ -15,7 +15,7 @@ def make_blueprint(b):
     return blueprint
 
 blueprints = list(map(make_blueprint,blueprints))
-# blueprints = blueprints[:3]
+blueprints = blueprints[:3]
 print(blueprints)
 @cache
 def geodes(r, c_r, o_r, g_r, time, ore, clay, obsidian):
