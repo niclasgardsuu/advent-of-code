@@ -47,18 +47,15 @@ def decimal_to_snafu(decimal):
         symbol = decimal // 5**(length-n-1)
         snafu.append(symbol)
         decimal -=  symbol * (5**(length-n-1))
-    print("base 5:",arr_to_str(snafu))
     
     # convert to snafu
     for n in reversed(range(1, length+1)):
-        print("n:",n)
         # first add any overflow to next symbol
         snafu[n-1] += snafu[n] // 5
         snafu[n] = snafu[n] % 5
 
         # convert to snafu values [-2, -1, 0, 1, 2]
         if snafu[n] >= 3:
-            print("hallå va du borde komma hit")
             snafu[n-1] += 1
             snafu[n] = snafu[n] - 5
         
@@ -81,9 +78,8 @@ for s, d in zip(snafu,decimal):
     except:
         print(decimalized, "does not equal", d)
         exit(1)
-    print('done')
 
-print("DECIMAL TO SNAFU:")
+print("\nDECIMAL TO SNAFU:")
 for s, d in zip(snafu,decimal):
     snafulized = decimal_to_snafu(d)
     print(d,'==',s)
@@ -92,15 +88,14 @@ for s, d in zip(snafu,decimal):
     except:
         print(snafulized, "does not equal", s)
         exit(1)
-    print("DONE")
 
 ## Now I know my functions work lol
 
 with open('input.txt') as f:
     data = f.read()
 snafus = data.split('\n')
+print("\nTESTS DONE\n")
 
-sum = 0
-for snafu in snafus:
-    sum += snafu_to_decimal(snafu)
+sum = sum(map(snafu_to_decimal,snafus)) 
+print(sum)
 print(decimal_to_snafu(sum))
