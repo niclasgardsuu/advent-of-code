@@ -22,8 +22,6 @@ closers = {
     '{': '}'
 }
 
-openers = '<([{'
-
 p = 0
 p2s = []
 for row in rows:
@@ -31,7 +29,7 @@ for row in rows:
     corrupt = False
     opened = []
     for d in row:
-        if d in openers:
+        if d in '<([{':
             opened.append(d)
         else:
             if d != closers[opened.pop()]:
