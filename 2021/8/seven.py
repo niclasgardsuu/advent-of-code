@@ -116,5 +116,5 @@ for input in inputs:
         decoded.append(d)
 sum = 0
 for i, n in enumerate(reversed(decoded)):
-    sum += n*(10**((i%4)))
+    sum += n*(10**(i%4))
 print(sum)
