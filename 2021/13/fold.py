@@ -13,6 +13,7 @@ folds = []
 for fold in foldsdata.split('\n'):
     v = fold.split()[-1].split('=')
     folds.append([v[0], int(v[1])])
+# folds = [folds[0]] # Part 1
 
 for fold in folds:
     for dot in dots:
