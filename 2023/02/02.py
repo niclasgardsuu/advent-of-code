@@ -4,7 +4,7 @@ with open("input.txt",'r') as f:
 rows = data.split('\n')
 
 def max_cubes(row,color):
-    return max(map(lambda x: int(x.split()[0]), re.findall(f'\d* {color}',row)))
+    return max(map(int, re.findall(f'(\d*)(?= {color})',row)[::2]))
 
 part1 = 0
 part2 = 0
